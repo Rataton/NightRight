@@ -24,4 +24,8 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="logout">Logout</string>
 
+    <string name="facebook_app_id">1447072888924924</string>
+    <string name="title_activity_face">FaceActivity</string>
+    <string name="soy_face">SOY EL FACE</string>
+
 </resources>
