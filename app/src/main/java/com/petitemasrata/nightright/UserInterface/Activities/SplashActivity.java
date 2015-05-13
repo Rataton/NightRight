@@ -25,7 +25,7 @@ public class SplashActivity extends Activity {
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }finally{
-                    Intent i = new Intent("com.petitemasrata.nightright.MAINACTIVITY");
+                    Intent i = new Intent("com.petitemasrata.nightright.FACEACTIVITY");
                     startActivity(i);
                 }
             }

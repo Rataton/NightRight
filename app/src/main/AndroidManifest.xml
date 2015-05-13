@@ -29,7 +29,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
-                <action android:name="com.petitemasrata.nightright.MAINACTIVITY" />
+                <action android:name="com.petitemasrata.nightright.FACEACTIVITY" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -38,15 +38,12 @@
         <activity
             android:name=".UserInterface.Activities.MainActivity"
             android:label="@string/app_name">
-            <!--<intent-filter>-->
-                <!--<action android:name="com.petitemasrata.nightright.MAINACTIVITY" />-->
+            <intent-filter>
+                <action android:name="com.petitemasrata.nightright.MAINACTIVITY" />
 
-                <!--<category android:name="android.intent.category.DEFAULT" />-->
-            <!--</intent-filter>-->
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
-
-
-
 
         <activity
             android:name="com.facebook.FacebookActivity"
