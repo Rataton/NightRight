@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">NightRight</string>
+    <string name="hello_world">DIRECTORIO</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+
+    <string name="title_activity_character_detail_actiity">Detalles</string>
+
+    <string name="title_section1">Directorio</string>
+    <string name="title_section2">Mapa</string>
+    <string name="title_section3">Configuraciones</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_map">Map</string>
+
+    <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">
+        AIzaSyDjVUYSVKl-zwtzTp44rJp3jJOy34Gc_mA
+    </string>
+    <string name="title_activity_splash">SplashActivity</string>
+
+</resources>
