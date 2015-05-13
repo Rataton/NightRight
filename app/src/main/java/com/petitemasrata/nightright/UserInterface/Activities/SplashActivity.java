@@ -1,5 +1,6 @@
 package com.petitemasrata.nightright.UserInterface.Activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -9,7 +10,7 @@ import android.view.MenuItem;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.petitemasrata.nightright.R;
 
-public class SplashActivity extends ActionBarActivity {
+public class SplashActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +21,7 @@ public class SplashActivity extends ActionBarActivity {
         Thread timerThread = new Thread(){
             public void run(){
                 try{
-                    sleep(3000);
+                    sleep(2000);
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }finally{
