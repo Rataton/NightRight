@@ -3,10 +3,8 @@ package com.petitemasrata.nightright.UserInterface.Fragments;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,34 +18,30 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.petitemasrata.nightright.R;
 import com.petitemasrata.nightright.UserInterface.model.FacebookUser;
 
-import org.json.JSONObject;
-
 import java.util.Arrays;
 
-public class FaceFragment extends Fragment {
+
+public class FaceFragmont extends Fragment {
+
 
     Context CONTEXT;
     CallbackManager callbackManager;
     LoginButton loginButton;
     AccessTokenTracker accessTokenTracker;
     ProfileTracker profileTracker;
-    FacebookCallback<LoginResult> mFacebookCallback;
     Profile infoProfile;
 
     FacebookUser fbUser;
 
 
-    public FaceFragment() {
+    public FaceFragmont() {
     }
 
     @Override
@@ -57,7 +51,7 @@ public class FaceFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(CONTEXT.getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
@@ -78,23 +72,21 @@ public class FaceFragment extends Fragment {
                     Profile oldProfile,
                     Profile currentProfile) {
                 if (currentProfile != null) {
+                    infoProfile = Profile.getCurrentProfile();
+                    if (infoProfile != null) {
+                        String firstName = infoProfile.getFirstName();
+                        String lastName = infoProfile.getLastName();
+                        String fbId = infoProfile.getId();
+                        Uri fbImageProfile = infoProfile.getProfilePictureUri(64, 64);
 
-//                    infoProfile = Profile.getCurrentProfile();
-//                    if (infoProfile != null) {
-//                        String firstName = infoProfile.getFirstName();
-//                        String lastName = infoProfile.getLastName();
-//                        String fbId = infoProfile.getId();
-//                        Uri fbImageProfile = infoProfile.getProfilePictureUri(64, 64);
+                        fbUser = new FacebookUser(fbId, firstName, lastName, fbImageProfile);
 
-//                        fbUser = new FacebookUser(fbId, firstName, lastName, fbImageProfile);
-//
-
-//                        Toast.makeText(CONTEXT, "Bienvenido " + fbUser.getFbFirstName(), Toast.LENGTH_SHORT).show();
-//                        Intent i = new Intent("com.petitemasrata.nightright.MAINACTIVITY");
-//                        startActivity(i);
-//                    } else {
-//                        Toast.makeText(CONTEXT, "ERROR: No existe un perfil", Toast.LENGTH_SHORT).show();
-//                    }
+                        Toast.makeText(CONTEXT, "Bienvenido " + fbUser.getFbFirstName(), Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent("com.petitemasrata.nightright.MAINACTIVITY");
+                        startActivity(i);
+                    } else {
+                        Toast.makeText(CONTEXT, "ERROR: No existe un perfil", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         };
@@ -113,29 +105,6 @@ public class FaceFragment extends Fragment {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 // App code
-                infoProfile = Profile.getCurrentProfile();
-                    if (infoProfile != null) {
-                        String firstName = infoProfile.getFirstName();
-                        String lastName = infoProfile.getLastName();
-                        String fbId = infoProfile.getId();
-                        Uri fbImageProfile = infoProfile.getProfilePictureUri(64, 64);
-                        SharedPreferences sharedPreferences = CONTEXT.getSharedPreferences("fb_user_prefs", CONTEXT.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("first_name", firstName);
-                        editor.putString("last_name", lastName);
-                        editor.putString("fb_id", fbId);
-                        editor.putString("img_profile", fbImageProfile.toString());
-                        editor.putBoolean("is_login", true);
-                        editor.apply();
-                        Toast.makeText(CONTEXT, "Bienvenido " + firstName, Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent("com.petitemasrata.nightright.MAINACTIVITY");
-                        startActivity(i);
-
-                    } else {
-                        Toast.makeText(CONTEXT, "ERROR: No existe un perfil", Toast.LENGTH_SHORT).show();
-                    }
-
-
             }
 
             @Override
@@ -148,7 +117,6 @@ public class FaceFragment extends Fragment {
                 // App code
             }
         });
-
         return rootView;
     }
 
@@ -166,5 +134,4 @@ public class FaceFragment extends Fragment {
         accessTokenTracker.stopTracking();
         profileTracker.stopTracking();
     }
-
 }

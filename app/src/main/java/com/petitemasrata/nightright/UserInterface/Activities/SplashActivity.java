@@ -2,6 +2,7 @@ package com.petitemasrata.nightright.UserInterface.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,6 +12,8 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.petitemasrata.nightright.R;
 
 public class SplashActivity extends Activity {
+
+    Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +28,15 @@ public class SplashActivity extends Activity {
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }finally{
-                    Intent i = new Intent("com.petitemasrata.nightright.FACEACTIVITY");
+
+                    SharedPreferences sharedPref = getSharedPreferences("fb_user_prefs", MODE_PRIVATE);
+                    boolean isLogin = sharedPref.getBoolean("is_login", false);
+
+                    if (isLogin){
+                        i = new Intent("com.petitemasrata.nightright.MAINACTIVITY");
+                    } else {
+                        i = new Intent("com.petitemasrata.nightright.FACEACTIVITY");
+                    }
                     startActivity(i);
                 }
             }
